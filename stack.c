@@ -35,6 +35,7 @@ int pop(){
 	}
 }
 
+//check if full or empty
 static int is_full(){
 	return top == contents + STACK_SIZE;
 }
@@ -43,6 +44,7 @@ static int is_empty(){
 	return top == contents;
 }
 
+//print errors
 static void stack_overflow(){
 	fprintf(stderr, "Error: Stack overflow.\n");
 	exit(EXIT_FAILURE);

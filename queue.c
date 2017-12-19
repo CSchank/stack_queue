@@ -22,7 +22,7 @@ void enqueue(int n){
 	else
 		circinc(&right);
 	check_if_full();
-	is_empty = 0;
+	is_empty = 0; //obviously it can't be empty if we just added something
 }
 
 int dequeue(){
@@ -32,10 +32,11 @@ int dequeue(){
 	else
 		circinc(&left);
 	check_if_empty();
-	is_full = 0;
+	is_full = 0; //obviously it can't be full if we just removed something
 	return n;
 }
 
+//increment in a circular fashion
 static void *circinc(int **p){
 	if(*p + 1 == contents + QUEUE_SIZE){
 		*p = contents;
@@ -44,6 +45,7 @@ static void *circinc(int **p){
 	}
 }
 
+//check if it's full when enqueuing
 static void check_if_full(){
 	if (left == right)
 		is_full = 1;
@@ -51,6 +53,7 @@ static void check_if_full(){
 		is_full = 0;
 }
 
+//check if it's empty when dequeuing
 static void check_if_empty(){
 	if (left == right)
 		is_empty = 1;
@@ -58,6 +61,7 @@ static void check_if_empty(){
 		is_empty = 0;
 }
 
+//print errors
 static void queue_empty(){
 	fprintf(stderr, "Error: Cannot dequeue from empty queue.\n");
 	exit(EXIT_FAILURE);
